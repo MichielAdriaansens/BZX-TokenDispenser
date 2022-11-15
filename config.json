@@ -1,0 +1,30 @@
+{
+    "5": {
+        "BCC": {
+            "address": "0x0385A17668Da21B78FD9934241057f54DFF472F4"
+        },
+        "HIP": {
+            "address": "0xC32acFa3Ca0fb24850Ee72ddA8581fEDCC2b2c18"
+        },
+        "FAC": {
+            "address": "0xeB365867c6931186bC23cf8C7f1801a34C1c9E74"
+        },
+        "dispenser": {
+            "address": "0x36b6e41cB164D8638dE0209ef11A5E34C79aA92e"
+        }
+    },
+    "80001": {
+        "BCC": {
+            "address": "0xa602455a13b62917E0E9AECE119Fc1907301d17B"
+        },
+        "HIP": {
+            "address": "0xC02b82CCD0A2ddC1FccbADddbF846708E4AA05ac"
+        },
+        "FAC": {
+            "address": "0xB954961Dd193a1296CBAafa444a2a45e31805Cbe"
+        },
+        "dispenser": {
+            "address": "0x8583701935F6269f2cA49402a72B6c4576506315"
+        }
+    }
+}
