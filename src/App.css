@@ -1,15 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323");
+
+html, body{
+  height: 100%;
+  background-color: aliceblue;
+}
+#root{
+  height: 100%;
+}
+
 .App {
+
   text-align: center;
+  font-family: "VT323", "sans";
+  font-size: 26px;
+  color: #2187d0;
+  height: 100%;
+}
+.App h1{
+  margin: 1% 0;
+  font-size: 6vmax;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  margin-top: 3%;
+  height: 28vmin;
+ 
+}
+.App-chat{
+  position: absolute;
+  left: 50%;
+  transform: translate(-152%);
+  margin-right: 20%;
+}
+.App-bubble {
+  height: 30vmin;
+
+}
+.App-comment{
+  color: black;
+  width: 90%;
+  position: absolute;
+  top: 25%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  font-family: "press start 2p", "sans";
+  font-size: 1.2vmax;
+  line-height: 140%;
+}
+
+.needMetamask h2{
+  color: orangered;
+  font-family: "press start 2p", "sans";
+  font-size: 15px;
+  line-height: 140%;
+}
+
+.address{
+  margin: 1px;
+  padding-bottom: 5%;
+  font-size: 21px;
+}
+
+.connectButton{
+  align-items: center;
+  border: solid lightskyblue 4px;
+  border-radius: 10px;
+  background: tomato;
+  color: whitesmoke;
+  font-family: "press start 2p";
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  margin: 0;
+  transition: all .25s ease;
+  width: 192px;
+}
+.connectButton:hover{
+  cursor: pointer;
+}
+
+.selectContainer{
+  margin: auto;
+  width: 31vmax;
+  border-radius: 10px;
+  border: solid lightskyblue 4px;
+  background-color: #282c34;
+  color: aliceblue;
+  padding: 3% 0;
+  font-size: 28px;
+}
+.tokenSelect:hover{
+  
+  cursor: pointer;
+  color: #3593d7;
+}
+.selectTokenMsg{
+  color: #3593d7;
+  font-style: oblique;
+ 
+  margin: 2%;
+  margin-top: 0;
+}
+
+.withdrawUI p{
+  font-style: normal;
+  margin-bottom: 1%;
+  
+}
+.withdrawUI button{
+  align-items: center;
+  border: solid lightskyblue 4px;
+  border-radius: 10px;
+  background: tomato;
+  color: whitesmoke;
+  cursor: pointer;
+  font-family: "press start 2p";
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  margin-top: 5vmin;
+  transition: all .25s ease;
+  width: 192px;
+}
+.withdrawUI button:hover{
+  background-color: #3593d7;
+}
+
+.networkUI p{
+  margin: 21px;
+  font-style: italic;
+  color: #3593d7;
+}
+
+.networkButton{
+  cursor: pointer;
+  background-color:rgb(22, 22, 109);
+  border: solid lightskyblue 4px;
+  border-radius: 10px;
+  color: aliceblue;
+  font-family: "press start 2p";
+  font-size: 16px;
+  width: 129px;
+  padding: 8px;
+  margin: 1%;
+  margin-bottom: 8%;
+}
+.networkButton:hover{
+  background-color: #3593d7;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 2s ease-in-out;
+  }
+  .App-chat{
+    animation: App-chat-floaty infinite 2s ease-in-out;
+  }
+  .tokenSelect:hover{
+    animation: token-select infinite 0.5s linear;
   }
 }
 
@@ -24,15 +172,30 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  0% {
+    transform: rotate(10deg);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes App-chat-floaty {
+  0%{
+    transform: translate(-152%, 0%);
+  }
+  50%{
+    transform: translate(-152%, 10%);
+  }
+}
+@keyframes token-select{
+  0%{
+    transform: translate(0%, 0%);
+  }
+  50%{
+    transform: translate(4%, 0%);
   }
 }

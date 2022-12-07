@@ -1,6 +1,4 @@
 const { ethers } = require("hardhat");
-const config = require("../config.json");
-
 
 async function main(){
 

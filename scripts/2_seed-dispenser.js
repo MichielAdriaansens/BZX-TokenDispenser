@@ -1,4 +1,4 @@
-const config = require("../config.json");
+const config = require("../src/config.json");
 const { ethers } = require("hardhat");
 
 async function main(){

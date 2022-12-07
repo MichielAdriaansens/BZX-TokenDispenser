@@ -6,6 +6,7 @@ import "./Token.sol";
 contract Dispenser{    
     address public owner;
     uint256 public tokenLimit;
+    mapping(address => uint256) public withdrawRecord;
     mapping(address => uint256) public tokenPool; //tokenaddress > hoeveelheid tokens in dit contract
 
     event Deposit(address indexed _from, uint256 _value);
@@ -34,9 +35,9 @@ contract Dispenser{
         
         //transfer tokens naar dit adres
         require(Token(_token).transferFrom(msg.sender , address(this), amount), "tranferFrom failed!");
-        emit Deposit(msg.sender , amount);
 
         tokenPool[_token] += amount;
+        emit Deposit(msg.sender , amount);
     }
 
     //withdraw
@@ -47,12 +48,13 @@ contract Dispenser{
         require(amount <= tokenPool[_token], "not enough tokens in pool");
         
         //check amount of token msg.sender has
-        require(Token(_token).balanceOf(msg.sender) < tokenLimit, "you already have tokens in your wallet");
+        require(withdrawRecord[msg.sender] < tokenLimit, "you already have tokens in your wallet");
+        withdrawRecord[msg.sender] += amount;
 
-        emit Withdraw(msg.sender, _token, amount);
         tokenPool[_token] -= amount;
 
         //withdraw
         Token(_token).transfer(msg.sender, amount);
+        emit Withdraw(msg.sender, _token, amount);
     }
 }

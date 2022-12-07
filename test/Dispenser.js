@@ -53,7 +53,7 @@ describe("Dispenser", () =>{
             expect(dispenser.connect(accounts[1]).withdraw(token.address, toDecimal(11))).to.be.reverted;
         });
         it("has event", async () => {
-            assert.equal(result.events[0].event, "Withdraw");
+            assert.equal(result.events[1].event, "Withdraw");
         });
     });
 });
