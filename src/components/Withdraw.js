@@ -16,35 +16,41 @@ function Withdraw({provider, withdrawToken, account, chainId}){
         amount = await dispenser.tokenLimit();
         setWithdrawAmount( ethers.utils.formatUnits(amount, 18));
         
-        //--is not a function error. check abi -_-
+        //--if not a function error. check abi -_-
         userWithdrawn = await dispenser.withdrawRecord(account.toString());
         setUserRecord(ethers.utils.formatUnits(userWithdrawn,18));
     }
     loadContracts();
 
     async function withdrawHandler(){
-        const {chainId} = await provider.getNetwork();
+
         const signer = await provider.getSigner();
         await signer;
 
-       if(withdrawToken === "BCC"){
-        console.log("BiiitCoonneeect");
-        await dispenser.connect(signer).withdraw(config[chainId].BCC.address, amount);
-       }
-       else if(withdrawToken === "HIP"){
-        console.log("Hip BTC Hip BTC!");
-        await dispenser.connect(signer).withdraw(config[chainId].HIP.address, amount);
-       } 
-       else if(withdrawToken === "FAC"){
-        console.log("Falcon Coin!!!");
-        await dispenser.connect(signer).withdraw(config[chainId].FAC.address, amount);  
-       }
+        if(withdrawToken === "BCC"){
+            console.log("BiiitCoonneeect");
+            await dispenser.connect(signer).withdraw(config[chainId].BCC.address, amount);
+        }
+        else if(withdrawToken === "HIP"){
+            console.log("Hip BTC Hip BTC!");
+            await dispenser.connect(signer).withdraw(config[chainId].HIP.address, amount);
+        } 
+        else if(withdrawToken === "FAC"){
+            console.log("Falcon Coin!!!");
+            await dispenser.connect(signer).withdraw(config[chainId].FAC.address, amount);  
+        }
     }
+
+    dispenser.once('Withdraw', async (event)=>{
+        userWithdrawn = await dispenser.withdrawRecord(account.toString());
+        setUserRecord(ethers.utils.formatUnits(userWithdrawn,18));
+       console.log("tokens withdrawn"); 
+    });
 
     function WithdrawUI(){
         return(
             <div className='withdrawUI'>
-                
+            
                 {withdrawToken !== "" && (
                     <button onClick={withdrawHandler}>Withdraw</button>
                 )}

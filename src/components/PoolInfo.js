@@ -8,24 +8,27 @@ function PoolInfo({provider, setWithdrawToken, chainId}){
     const [hipPool, setHipPool] = useState(0);
     const [facPool, setFacPool] = useState(0);
     const [selected, setSelected] = useState(0);
-   
+
+    const dispenser = new ethers.Contract(config[chainId].dispenser.address, Dispenser.abi, provider);
+    let bccPoolValue,hipPoolValue,facPoolValue;
 
     async function loadTokenPool(){
-       // const {chainId} = await provider.getNetwork();
-        const dispenser = new ethers.Contract(config[chainId].dispenser.address, Dispenser.abi, provider);
-
         //pas op met bignumbers en useState.. zonder formatUnits ontstaat er een "loop"
-        let bccPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].BCC.address), 18);
+        bccPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].BCC.address), 18);
         setBccPool(bccPoolValue);
 
-        let hipPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].HIP.address), 18);
+        hipPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].HIP.address), 18);
         setHipPool(hipPoolValue);
         
-        let facPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].FAC.address), 18);
+        facPoolValue = ethers.utils.formatUnits(await dispenser.tokenPool(config[chainId].FAC.address), 18);
         setFacPool(facPoolValue);
-       
+
     }
     loadTokenPool();
+
+    dispenser.once('Withdraw', async (event)=>{
+        loadTokenPool();
+    });
 
     return (
         <div className="selectContainer">

@@ -7,7 +7,7 @@ import PoolInfo from './PoolInfo';
 import Withdraw from './Withdraw';
 import config from '../config.json';
 
-let account,provider, chainId;
+let account, provider, chainId;
 
 
 function App() {
@@ -18,7 +18,6 @@ function App() {
   const [connected, setConnected] = useState(false);
   const [withdrawToken, setWithdrawToken] = useState("");
   const [chatMsg, setChatMsg] = useState("stake it 'til you BREAK it!");
-  //const isConnected = Boolean(account);
 
   async function connectHandler(){
     try{
@@ -103,7 +102,8 @@ function App() {
                 <p className='selectTokenMsg'>Select a token!!</p>
                 <PoolInfo provider={provider} chainId={chainId} setWithdrawToken={setWithdrawToken}/>
                 <Withdraw provider={provider} chainId={chainId} withdrawToken={withdrawToken} account={account}/>
-                <br/><p className='address'>address: {`${account.toString().slice(0,5)}...${account.toString().slice(38,42)}`}</p>
+                <br/>
+                <p className='address'>address: {`${account.toString().slice(0,5)}...${account.toString().slice(38,42)}`}</p>
               </div>
             ):(
               <div className='networkUI'>
